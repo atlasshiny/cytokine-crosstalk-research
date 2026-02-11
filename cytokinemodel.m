@@ -1,4 +1,4 @@
-function [outputArg1,outputArg2, outputArg3] = cytokinemodel(t,y,p)
+function dydt = cytokinemodel(t,y,p)
 %Comprehensive model for cytokine modeling
 %   Detailed explanation goes here
 arguments (Input)
@@ -8,12 +8,8 @@ arguments (Input)
 end
 
 arguments (Output)
-    outputArg1
-    outputArg2
-    outputArg3
+    dydt (3,1)
 end
-
-outputArg1 = t;
-outputArg2 = y;
-outputArg3 = p;
+%the return vector with all of the calculated rate of changes
+dydt = [];
 end
