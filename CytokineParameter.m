@@ -12,8 +12,10 @@ classdef CytokineParameter
         dY (1,1) double = 0.01     % Cytokine decay rate
         alphaI (1,1) double = 0.1  % Cytokine effect on immune cells
         D (1,1) double {mustBeMember(D, [0, 1])} = 0 % Drug level (0 for no drug; % 1 for full-dose culture condition)
-
-        %still missing the specific "delta" drug parameters
+        deltaC (1,1) double {mustBeInRange(deltaC, 0, 1)} = 0.1
+        deltaI (1,1) double {mustBeInRange(deltaI, 0, 1)} = 0.1
+        epsilonC (1,1) double {mustBeInRange(epsilonC, 0,1)} = 0.1
+        epsilonI (1,1) double {mustBeInRange(epsilonI, 0,1)} = 0.1
 
     end
     
