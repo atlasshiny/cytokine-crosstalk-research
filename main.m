@@ -5,6 +5,8 @@ full_path = fullfile(pathname, filename);
 %load data into matlab 
 data_set = readtable(full_path);
 
-model = cytokinemodel();
+params = CytokineParameter("rC",0.05,"dC",0.01);
+
+model = cytokinemodel(0,1e5, params);
 
 disp(model)
