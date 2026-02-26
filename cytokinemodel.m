@@ -5,31 +5,39 @@ function dydt = cytokinemodel(~,y,p)
 arguments (Input)
     ~ %time (must be a scalar; if incorporating time: t (1,1) double)
     y (3,1) double %current cell/cytokine count at a given t-value (a column vector). If starting at t=0, this is the starting amount of cells/cytokines.
-    p CytokineParameter %an instance of the CytokineParameter class
+    p %an instance of the CytokineParameter class OR a column vector containing all parameters
 end
 
 arguments (Output)
     dydt (3,1) %a column vector containing the rates of change 
 end
+
 %turn the model parameters into a column vector `p_vec` and assign them to seperate, smaller variables
 %the reason for converting to a vector is for certain `ode` object methods
-p_vec = p.toVector();
+if isa(p, 'CytokineParameter')
+    p_vec = p.toVector();
+elseif isa(p, 'double') && isvector(p)
+    p_vec = p;
+else
+    error('Input p must be a CytokineParameter object or a numeric vector.');
+end
 
 %mapping numeric indices back to meaningful parameter variable names
-    rI = p_vec(1);
-    rC = p_vec(2);
-    dI = p_vec(3);
-    dC = p_vec(4);
-    betaI = p_vec(5);
-    betaC = p_vec(6);
-    kIC  = p_vec(7);
-    dY = p_vec(8);
-    alphaI = p_vec(9);
-    D = p_vec(10);
-    deltaC = p_vec(11);
-    deltaI = p_vec(12);
-    epsilonC = p_vec(13);
-    epsilonI = p_vec(14);
+rI       = p_vec(1);
+rC       = p_vec(2);
+dI       = p_vec(3);
+dC       = p_vec(4);
+betaI    = p_vec(5);
+betaC    = p_vec(6);
+kIC      = p_vec(7);
+dY       = p_vec(8);
+alphaI   = p_vec(9);
+D        = p_vec(10);
+deltaC   = p_vec(11);
+deltaI   = p_vec(12);
+epsilonC = p_vec(13);
+epsilonI = p_vec(14);
+
 
 %pull components of the vector y
 I=y(1);
