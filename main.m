@@ -52,6 +52,10 @@ for D_value = [0,1]
         plot(t, cancer_cells, 'LineWidth', 2, 'DisplayName', 'Drug (D=1)');
         drawnow;
     end
+
+    if conf.sensitivity
+        parametersensitivity(sol)
+    end
 end
 legend('show');
 
