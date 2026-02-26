@@ -8,5 +8,6 @@ classdef Config
 
         %runtime settings
         realdata (1,1) logical = false
+        sensitivity (1,1) logical = false %calculate parameter sensitivity
     end
 end
