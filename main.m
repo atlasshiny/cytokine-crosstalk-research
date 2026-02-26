@@ -34,8 +34,8 @@ for D_value = [0,1]
     f.Parameters = current_p;
 
     %solve ODE and get a return matrix with the time (t) and the values at t
-    solution = solve(f, tspan(1), tspan(2));
-    
+    sol = solve(f, tspan(1), tspan(2));
+
     %take time and the cancer cells value from the solution
     t = sol.Time;
     cancer_cells = sol.Solution(2, :);
