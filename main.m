@@ -1,16 +1,19 @@
-%select the data file using the standard windows file viewer
-%[filename, pathname] = uigetfile('*.csv', 'Select dataset');
-%full_path = fullfile(pathname, filename);
+%add parameters for the model and runtime settings (all parameters are temporary; current parameters balloon to a huge number)
+conf = Config();
+params = CytokineParameter();
 
-%load data into matlab 
-%data_set = readtable(full_path);
-
-%add parameters for the model (all are temporary and for testing; current parameters balloon to a huge number)
-params = CytokineParameter("rC",0.01,"dC",0.08,"kIC",0.001,"dY",0.2);
-y0 = [1e5; 1e2; 0.1];
+if conf.realdata
+    %select the data file using the standard windows file viewer
+    [filename, pathname] = uigetfile('*.csv', 'Select dataset');
+    full_path = fullfile(pathname, filename);
+    
+    %load data into matlab 
+    data_set = readtable(full_path);
+end
 
 %swap the values inserted into the params variable to a vector
 p0 = params.toVector();
+y0 = params.y0; %already inserted as a vector
 
 %plot each value (using the in-person example)
 opts = odeset('RelTol',1e-6,'AbsTol', 1e-9);
@@ -22,7 +25,7 @@ xlabel('Time (hours)');
 ylabel('Cancer cells C(t)');
 title('Cancer-only ODE model: no drug vs drug');
 
-tspan = [0, 72]; %range of hours
+tspan = conf.tspan; %range of hours
 
 %create a ODE object that houses the equations for the mode
 f = ode(ODEFcn=@cytokinemodel, InitialValue=y0, Parameters=p0, Sensitivity=odeSensitivity());
