@@ -38,9 +38,9 @@ C=y(2);
 Y=y(3);
 
 %calculate the rate of change in immune cells with respect to time
-dIdt = rI * (1 - deltaI * D) * I + alphaI * Y * I - dI * I; %change in immune cells with respect to time
-dCdt = rC * (1 - deltaC * D) * C - dC * C - kIC * I * C; %change in cancer cells with respect to time
-dYdt = betaI * (1 - epsilonI * D) * I + betaC * (1 - epsilonC * D) * C - dY * Y; %change in cytokine concentration with respect to time
+dIdt = rI .* (1 - deltaI .* D) .* I + alphaI .* Y .* I - dI .* I; %change in immune cells with respect to time
+dCdt = rC .* (1 - deltaC .* D) .* C - dC .* C - kIC .* I .* C; %change in cancer cells with respect to time
+dYdt = betaI .* (1 - epsilonI .* D) .* I + betaC .* (1 - epsilonC .* D) .* C - dY .* Y; %change in cytokine concentration with respect to time
 
 %the return vector with all of the calculated rate of changes
 dydt = [dIdt;dCdt;dYdt];
