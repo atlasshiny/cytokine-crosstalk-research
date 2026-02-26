@@ -1,4 +1,4 @@
-function [outputArg1,outputArg2] = parametersensitivity(sol)
+function sensitivity = parametersensitivity(sol)
 %Interprets parameter sensitivity information from the solved ODE system
 
 arguments (Input)
@@ -11,6 +11,5 @@ end
 sensitivity = sol.Sensitivity();
 
 %perform analysis on the sensitivity values
-%at the current moment, this function is a skeleton for further implementaiton
-
+%ask/research what are some methods for sensitivity analysis
 end
