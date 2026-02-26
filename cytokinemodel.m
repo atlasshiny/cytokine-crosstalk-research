@@ -11,15 +11,35 @@ end
 arguments (Output)
     dydt (3,1) %a column vector containing the rates of change 
 end
+%turn the model parameters into a column vector `p_vec` and assign them to seperate, smaller variables
+%the reason for converting to a vector is for certain `ode` object methods
+p_vec = p.toVector();
+
+%mapping numeric indices back to meaningful parameter variable names
+    rI = p_vec(1);
+    rC = p_vec(2);
+    dI = p_vec(3);
+    dC = p_vec(4);
+    betaI = p_vec(5);
+    betaC = p_vec(6);
+    kIC  = p_vec(7);
+    dY = p_vec(8);
+    alphaI = p_vec(9);
+    D = p_vec(10);
+    deltaC = p_vec(11);
+    deltaI = p_vec(12);
+    epsilonC = p_vec(13);
+    epsilonI = p_vec(14);
+
 %pull components of the vector y
 I=y(1);
 C=y(2);
 Y=y(3);
 
 %calculate the rate of change in immune cells with respect to time
-dIdt = p.rI * (1 - p.deltaI * p.D) * I + p.alphaI * Y * I - p.dI * I; %change in immune cells with respect to time
-dCdt = p.rC * (1 - p.deltaC * p.D) * C - p.dC * C - p.kIC * I * C; %change in cancer cells with respect to time
-dYdt = p.betaI * (1 - p.epsilonI * p.D) * I + p.betaC * (1 - p.epsilonC * p.D) * C - p.dY * Y; %change in cytokine concentration with respect to time
+dIdt = rI * (1 - deltaI * D) * I + alphaI * Y * I - dI * I; %change in immune cells with respect to time
+dCdt = rC * (1 - deltaC * D) * C - dC * C - kIC * I * C; %change in cancer cells with respect to time
+dYdt = betaI * (1 - epsilonI * D) * I + betaC * (1 - epsilonC * D) * C - dY * Y; %change in cytokine concentration with respect to time
 
 %the return vector with all of the calculated rate of changes
 dydt = [dIdt;dCdt;dYdt];
