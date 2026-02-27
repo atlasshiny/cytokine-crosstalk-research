@@ -4,7 +4,7 @@ function dydt = cytokinemodel(~,y,p)
 %   general cytokine concentration with respect to time.
 arguments (Input)
     ~ %time (must be a scalar; if incorporating time: t (1,1) double)
-    y (3,1) double %current cell/cytokine count at a given t-value (a column vector). If starting at t=0, this is the starting amount of cells/cytokines.
+    y (1,3) double %current cell/cytokine count at a given t-value (a row vector). If starting at t=0, this is the starting amount of cells/cytokines.
     p %an instance of the CytokineParameter class OR a column vector containing all parameters
 end
 
