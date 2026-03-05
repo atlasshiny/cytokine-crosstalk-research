@@ -6,7 +6,7 @@ classdef CytokineParameter
         rI (1,1) double {mustBeNumeric} = 0.10    % Immune cell growth rate
         rC (1,1) double {mustBeNumeric} = 0.08    % Cancer cell growth rate
         dI (1,1) double {mustBeNumeric} = 0.02    % Immune cell death rate
-        dC (1,1) double {mustBeNumeric} = 0.10    % Cancer cell death rate
+        dC (1,1) double {mustBeNumeric} = 0.06    % Cancer cell death rate
         betaI (1,1) double = 0.01   % Cytokine prod. per immune cell
         betaC (1,1) double = 0.01   % Cytokine prod. per cancer cell
         kIC (1,1) double = 0.20    % Immune killing strength

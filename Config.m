@@ -4,7 +4,7 @@ classdef Config
 
     properties
         %ode solver settings
-        tspan = [0, 12]
+        tspan = [0, 2]
 
         %runtime settings
         realdata (1,1) logical = false
