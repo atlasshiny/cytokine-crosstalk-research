@@ -29,6 +29,8 @@ tspan = conf.tspan; %range of hours
 
 %create a ODE object that houses the equations for the mode
 f = ode(ODEFcn=@cytokinemodel, InitialValue=y0, Parameters=p0, Sensitivity=odeSensitivity());
+sol; %define for variable persistance outside of the loop
+
 
 for D_value = [0,1]
     %update the drug parameter for no drug vs drug
