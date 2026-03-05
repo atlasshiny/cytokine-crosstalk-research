@@ -19,7 +19,7 @@ classdef CytokineParameter
         epsilonI (1,1) double {mustBeInRange(epsilonI, 0,1)} = 0.1
 
         %starting parameters
-        y0 (1,3) = [1e3; 1e2; 0.1] %a column vector with the starting immune/cancer/cytokine numbers
+        y0 (3,1) = [1e3; 1e2; 0.1] %a column vector with the starting immune/cancer/cytokine numbers
     end
     
     methods
@@ -39,7 +39,7 @@ classdef CytokineParameter
         function p = toVector(obj) 
             %Converts the earlier provided parameters to a column vector
             arguments (Output)
-                p (1,14)    %column vector containing all parameters for the model
+                p (14,1)    %column vector containing all parameters for the model
             end
 
             p = [obj.rI; obj.rC; obj.dI; obj.dC; obj.betaI; ...
